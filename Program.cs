@@ -1,3 +1,7 @@
+global using projekt_programowanie.Models;
+global using projekt_programowanie.Services.SongService;
+global using projekt_programowanie.Dtos.Song;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddScoped<ISongService, SongService>();
 
 var app = builder.Build();
 

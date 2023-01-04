@@ -1,4 +1,6 @@
-﻿using projekt_programowanie.Models;
+﻿global using AutoMapper;
+using projekt_programowanie.Dtos.Song;
+using projekt_programowanie.Models;
 
 namespace projekt_programowanie.Services.SongService
 {
@@ -8,23 +10,35 @@ namespace projekt_programowanie.Services.SongService
             new Song(),
             new Song { Id = 1, Name = "Poker face"}
         };
+        private readonly IMapper _mapper;
 
-        
-
-        public List<Song> AddSong(Song newSong)
+        public SongService(IMapper mapper)
         {
-            songs.Add(newSong);
-            return songs;
+            _mapper = mapper;
         }
 
-        public List<Song> GetAllSongs()
+       
+        public async Task<ServiceResponse<List<GetSongDto>>> AddSong(Song newSong)
         {
-            return songs;
+            var serviceResponse = new ServiceResponse<List<GetSongDto>>();
+            songs.Add(_mapper.Map<Song>(newSong));
+            serviceResponse.Data= songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            return serviceResponse;
         }
 
-        public Song GetSongById(int id)
+        public async Task<ServiceResponse<List<GetSongDto>>> GetAllSongs()
         {
-            return songs.FirstOrDefault(m => m.Id == id);
+            var serviceResponse = new ServiceResponse<List<GetSongDto>>();
+            serviceResponse.Data= songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetSongDto>> GetSongById(int id)
+        {
+            var serviceResponse = new ServiceResponse<GetSongDto>();
+            var song = songs.FirstOrDefault(m => m.Id == id);
+            serviceResponse.Data = _mapper.Map<GetSongDto>(song);
+            return serviceResponse;
         }
     }
 }

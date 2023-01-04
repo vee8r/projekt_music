@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using projekt_programowanie.Models;
+using projekt_programowanie.Services.SongService;
 
 namespace projekt_programowanie.Controllers
 {
@@ -7,29 +8,30 @@ namespace projekt_programowanie.Controllers
     [Route("api/[controller]")]
     public class MusicController : ControllerBase 
     {
-        private static List<Song> songs = new List<Song> {
-            new Song(),
-            new Song { Id = 1, Name = "Poker face"}
-        };
+        
+        private readonly ISongService _songService;
+
+        public MusicController(ISongService songService)
+        {
+            _songService = songService;
+        }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Song>> Get()
+        public async Task<ActionResult<ServiceResponse<List<GetSongDto>>>> Get()
         {
-            return Ok(songs);
+            return Ok(await _songService.GetAllSongs());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Song> GetSingle(int id)
+        public async Task<ActionResult<ServiceResponse<GetSongDto>>> GetSingle(int id)
         {
-            return Ok(songs.FirstOrDefault( m => m.Id == id));
+            return Ok(await _songService.GetSongById(id));
         }
 
         [HttpPost]
-        public ActionResult<List<Song>> AddSong(Song newSong)
+        public async Task<ActionResult<ServiceResponse<List<GetSongDto>>>> AddSong(AddSongDto newSong)
         {
-            songs.Add(newSong);
-            return Ok(songs);
+            return Ok(await _songService.AddSong(newSong));
         }
-
     }
 }
