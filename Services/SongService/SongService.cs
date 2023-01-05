@@ -18,12 +18,38 @@ namespace projekt_programowanie.Services.SongService
         }
 
        
-        public async Task<ServiceResponse<List<GetSongDto>>> AddSong(Song newSong)
+        public async Task<ServiceResponse<List<GetSongDto>>> AddSong(AddSongDto newSong)
         {
             var serviceResponse = new ServiceResponse<List<GetSongDto>>();
-            songs.Add(_mapper.Map<Song>(newSong));
+            var song = _mapper.Map<Song>(newSong);
+            song.Id = songs.Max(c => c.Id) + 1;
+            songs.Add(song);
             serviceResponse.Data= songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetSongDto>>> DeleteSong(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetSongDto>>();
+
+            try
+            {
+                var song = songs.FirstOrDefault(c => c.Id == id);
+                if (song is null)
+                    throw new Exception($"Song with Id '{id}' not found.");
+
+                songs.Remove(song);
+
+
+                serviceResponse.Data = songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+
         }
 
         public async Task<ServiceResponse<List<GetSongDto>>> GetAllSongs()
@@ -39,6 +65,34 @@ namespace projekt_programowanie.Services.SongService
             var song = songs.FirstOrDefault(m => m.Id == id);
             serviceResponse.Data = _mapper.Map<GetSongDto>(song);
             return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<GetSongDto>> UpdateSong(UpdateSongDto updatedSong)
+        {
+            var serviceResponse = new ServiceResponse<GetSongDto>();
+
+            try
+            {
+                var song = songs.FirstOrDefault(c => c.Id == updatedSong.Id);
+                if (song is null)
+                    throw new Exception($"Song with Id '{updatedSong.Id}' not found.");
+
+               
+                song.Name = updatedSong.Name;
+                song.Artist = updatedSong.Artist;
+                song.ReleaseDate = updatedSong.ReleaseDate;
+                song.Class = updatedSong.Class;
+
+
+                serviceResponse.Data = _mapper.Map<GetSongDto>(song);
+            }
+            catch(Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+            return serviceResponse;
+
         }
     }
 }

@@ -33,5 +33,27 @@ namespace projekt_programowanie.Controllers
         {
             return Ok(await _songService.AddSong(newSong));
         }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetSongDto>>>> UpdateSong(UpdateSongDto updatedSong)
+        {
+            var response = await _songService.UpdateSong(updatedSong);
+            if(response.Data is null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<GetSongDto>>> DeleteSong(int id)
+        {
+            var response = await _songService.DeleteSong(id);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
+        }
     }
 }

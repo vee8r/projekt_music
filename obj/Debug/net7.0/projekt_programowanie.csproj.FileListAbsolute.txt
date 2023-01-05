@@ -31,3 +31,5 @@ C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debu
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debug\net7.0\projekt_programowanie.pdb
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debug\net7.0\projekt_programowanie.genruntimeconfig.cache
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debug\net7.0\ref\projekt_programowanie.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
