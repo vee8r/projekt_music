@@ -33,3 +33,13 @@ C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debu
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\obj\Debug\net7.0\ref\projekt_programowanie.dll
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Humanizer.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Npgsql.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\System.CodeDom.dll

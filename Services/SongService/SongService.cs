@@ -1,4 +1,5 @@
 ﻿global using AutoMapper;
+using projekt_programowanie.Data;
 using projekt_programowanie.Dtos.Song;
 using projekt_programowanie.Models;
 
@@ -11,10 +12,12 @@ namespace projekt_programowanie.Services.SongService
             new Song { Id = 1, Name = "Poker face"}
         };
         private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
-        public SongService(IMapper mapper)
+        public SongService(IMapper mapper, DataContext context)
         {
             _mapper = mapper;
+            _context = context;
         }
 
        
@@ -55,15 +58,16 @@ namespace projekt_programowanie.Services.SongService
         public async Task<ServiceResponse<List<GetSongDto>>> GetAllSongs()
         {
             var serviceResponse = new ServiceResponse<List<GetSongDto>>();
-            serviceResponse.Data= songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            var dbSongs = await _context.Songs.ToListAsync();
+            serviceResponse.Data= dbSongs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
             return serviceResponse;
         }
 
         public async Task<ServiceResponse<GetSongDto>> GetSongById(int id)
         {
             var serviceResponse = new ServiceResponse<GetSongDto>();
-            var song = songs.FirstOrDefault(m => m.Id == id);
-            serviceResponse.Data = _mapper.Map<GetSongDto>(song);
+            var dbSong = await _context.Songs.FirstOrDefaultAsync(m => m.Id == id);
+            serviceResponse.Data = _mapper.Map<GetSongDto>(dbSong);
             return serviceResponse;
         }
 
