@@ -7,10 +7,7 @@ namespace projekt_programowanie.Services.SongService
 {
     public class SongService : ISongService
     {
-        private static List<Song> songs = new List<Song> {
-            new Song(),
-            new Song { Id = 1, Name = "Poker face"}
-        };
+        
         private readonly IMapper _mapper;
         private readonly DataContext _context;
 
@@ -25,9 +22,12 @@ namespace projekt_programowanie.Services.SongService
         {
             var serviceResponse = new ServiceResponse<List<GetSongDto>>();
             var song = _mapper.Map<Song>(newSong);
-            song.Id = songs.Max(c => c.Id) + 1;
-            songs.Add(song);
-            serviceResponse.Data= songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            
+            _context.Songs.Add(song);
+            await _context.SaveChangesAsync();
+
+            serviceResponse.Data=
+               await _context.Songs.Select(c => _mapper.Map<GetSongDto>(c)).ToListAsync();
             return serviceResponse;
         }
 
@@ -37,14 +37,16 @@ namespace projekt_programowanie.Services.SongService
 
             try
             {
-                var song = songs.FirstOrDefault(c => c.Id == id);
+                var song = await _context.Songs.FirstOrDefaultAsync(c => c.Id == id);
                 if (song is null)
                     throw new Exception($"Song with Id '{id}' not found.");
 
-                songs.Remove(song);
+               _context.Songs.Remove(song);
 
+                await _context.SaveChangesAsync();
 
-                serviceResponse.Data = songs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+                serviceResponse.Data = 
+                    await _context.Songs.Select(c => _mapper.Map<GetSongDto>(c)).ToListAsync() ;
             }
             catch (Exception ex)
             {
@@ -77,7 +79,8 @@ namespace projekt_programowanie.Services.SongService
 
             try
             {
-                var song = songs.FirstOrDefault(c => c.Id == updatedSong.Id);
+                var song = 
+                    await _context.Songs.FirstOrDefaultAsync(c => c.Id == updatedSong.Id);
                 if (song is null)
                     throw new Exception($"Song with Id '{updatedSong.Id}' not found.");
 
@@ -87,7 +90,7 @@ namespace projekt_programowanie.Services.SongService
                 song.ReleaseDate = updatedSong.ReleaseDate;
                 song.Class = updatedSong.Class;
 
-
+                await _context.SaveChangesAsync();
                 serviceResponse.Data = _mapper.Map<GetSongDto>(song);
             }
             catch(Exception ex)

@@ -8,5 +8,6 @@
 
         public DateTime ReleaseDate { get; set; } = new DateTime(2020, 10, 24);
         public Type Class { get; set; } = Type.Pop;
+        public User? User { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace projekt_programowanie.Data
         }
 
         public DbSet<Song> Songs => Set<Song>();
+        public DbSet<User> Users => Set<User>();
     }
 }

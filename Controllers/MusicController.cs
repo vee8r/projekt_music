@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using projekt_programowanie.Models;
 using projekt_programowanie.Services.SongService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace projekt_programowanie.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class MusicController : ControllerBase 
