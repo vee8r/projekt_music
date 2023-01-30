@@ -22,6 +22,29 @@ namespace projektprogramowanie.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("projekt_programowanie.Models.Opinion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SongId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SongId")
+                        .IsUnique();
+
+                    b.ToTable("Opinions");
+                });
+
             modelBuilder.Entity("projekt_programowanie.Models.Song", b =>
                 {
                     b.Property<int>("Id")
@@ -76,7 +99,18 @@ namespace projektprogramowanie.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("projekt_programowanie.Models.Opinion", b =>
+                {
+                    b.HasOne("projekt_programowanie.Models.Song", "Song")
+                        .WithOne("Opinion")
+                        .HasForeignKey("projekt_programowanie.Models.Opinion", "SongId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Song");
                 });
 
             modelBuilder.Entity("projekt_programowanie.Models.Song", b =>
@@ -86,6 +120,11 @@ namespace projektprogramowanie.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("projekt_programowanie.Models.Song", b =>
+                {
+                    b.Navigation("Opinion");
                 });
 
             modelBuilder.Entity("projekt_programowanie.Models.User", b =>

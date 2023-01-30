@@ -2,7 +2,7 @@
 
 namespace projekt_programowanie.Models
 {
-    
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Type
     {
         Rap = 1,

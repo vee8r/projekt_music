@@ -73,8 +73,11 @@ namespace projekt_programowanie.Services.SongService
         public async Task<ServiceResponse<List<GetSongDto>>> GetAllSongs()
         {
             var serviceResponse = new ServiceResponse<List<GetSongDto>>();
-            var dbSongs = await _context.Songs.Where(c => c.User!.Id == GetUserId()).ToListAsync();
-            serviceResponse.Data= dbSongs.Select(c => _mapper.Map<GetSongDto>(c)).ToList();
+            var dbSongs = await _context.Songs
+             .Include(g => g.Opinion)
+             .Where(g => g.User!.Id == GetUserId())
+             .ToListAsync();
+            serviceResponse.Data = dbSongs.Select(g => _mapper.Map<GetSongDto>(g)).ToList();
             return serviceResponse;
         }
 
@@ -82,6 +85,7 @@ namespace projekt_programowanie.Services.SongService
         {
             var serviceResponse = new ServiceResponse<GetSongDto>();
             var dbSong = await _context.Songs
+                .Include(c => c.Opinion)
                 .FirstOrDefaultAsync(c => c.Id == id && c.User!.Id == GetUserId());
             serviceResponse.Data = _mapper.Map<GetSongDto>(dbSong);
             return serviceResponse;

@@ -9,5 +9,6 @@ namespace projekt_programowanie.Dtos.Song
 
         public DateTime ReleaseDate { get; set; } = new DateTime(2020, 10, 24);
         public Models.Type Class { get; set; } = Models.Type.Pop;
+        public GetOpinionDto? Opinion { get; set; }
     }
 }

@@ -7,6 +7,8 @@
             CreateMap<Song,GetSongDto>();
             CreateMap<AddSongDto, Song>();
             CreateMap<UpdateSongDto, Song>();
+            CreateMap<Opinion, GetOpinionDto>();
+            CreateMap<AddOpinionDto, Opinion>();
         }
     }
 }
