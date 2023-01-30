@@ -2,6 +2,7 @@
 using projekt_programowanie.Models;
 using projekt_programowanie.Services.SongService;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace projekt_programowanie.Controllers
 {
@@ -21,6 +22,7 @@ namespace projekt_programowanie.Controllers
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetSongDto>>>> Get()
         {
+            
             return Ok(await _songService.GetAllSongs());
         }
 

@@ -6,6 +6,7 @@
         {
             CreateMap<Song,GetSongDto>();
             CreateMap<AddSongDto, Song>();
+            CreateMap<UpdateSongDto, Song>();
         }
     }
 }

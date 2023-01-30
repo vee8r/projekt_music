@@ -43,3 +43,13 @@ C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debu
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Npgsql.dll
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\System.CodeDom.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Scrutor.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\Banan\source\repos\projekt_programowanie\projekt_programowanie\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
